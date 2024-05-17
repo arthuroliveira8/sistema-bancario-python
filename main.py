@@ -34,12 +34,14 @@ def extrato():
         tdep += i
     print(f"TOTAL: + R${tdep:.2f}")
     print()
+
     print("SAQUES".center(18, "-"))
     for i in saques:
         print(f"  - R${i:.2f}\n")
         tsaq += i
     print(f"TOTAL: - R${tsaq:.2f}")
     print()
+    
     print(f"Seu saldo atual é de R${saldo:.2f}")
 
 def depositar(valor):
