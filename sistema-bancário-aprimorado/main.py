@@ -33,13 +33,13 @@ while sair == False:
         elif strt == '3':
             cadastrar_usuario(usuarios)
         elif strt.upper() == 'S':
-            os.system('cls')
+            os.system('clear')
             sair = True
             break
         else:
             print('Operação inválida! Tente novamente.')
             input("Pressione qualquer tecla para continuar.")
-            os.system('cls')
+            os.system('clear')
 
     while sair == False and voltar == False:   #Adicionar nesse segundo menu uma janela com as informações do titular.
         op = input('''\nEscolha a operação que deseja realizar. Utilize "S" para voltar para tela de login.\n
@@ -61,15 +61,15 @@ while sair == False:
             visualizar_extrato(contas, conta_atual)
         elif op == '4':
             remover_conta(contas, conta_atual)
-            os.system('cls')
+            os.system('clear')
             voltar = True
         elif op == '5':
             remover_usuario(conta_atual, contas, usuarios)
             voltar = True
         elif op.upper() == 'S':
-            os.system('cls')
+            os.system('clear')
             voltar = True
         else:
             print("Operação inválida! Tente novamente.")
             input("Pressione qualquer tecla para continuar.")
-            os.system('cls')
+            os.system('clear')

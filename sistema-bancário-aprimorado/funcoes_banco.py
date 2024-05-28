@@ -8,19 +8,19 @@ def sacar(*, valor, contas, conta_atual):
     if num_saques == 3:
         print("Não foi possível completar a operação. Limite de saques diário atingido (3).")
         input('Pressione qualquer tecla para continuar.')
-        return os.system('cls')
+        return os.system('clear')
     if valor > 500.00:
         print("Não foi possível completar a operação, pois o limite máximo de saque é de R$500.00.")
         input('Pressione qualquer tecla para continuar.')
-        return os.system('cls')
+        return os.system('clear')
     if valor < 0.01:
         print("O valor informado é inválido.")
         input('Pressione qualquer tecla para continuar.')
-        return os.system('cls')
+        return os.system('clear')
     if saldo < valor:
         print("Não foi possível completar a operação por falta de saldo.")
         input('Pressione qualquer tecla para continuar.')
-        return os.system('cls')
+        return os.system('clear')
     
     saldo -= valor
     contas[conta_atual][2] = saldo
@@ -29,13 +29,13 @@ def sacar(*, valor, contas, conta_atual):
     contas[conta_atual][3] += f"Saque: - R$ {valor:.2f}\n"
     writeContas(contas)
     input('Pressione qualquer tecla para continuar. ')
-    os.system('cls')
+    os.system('clear')
 
 def depositar(valor, contas, conta_atual):
     saldo = contas[conta_atual][2]
     if valor < 0.01:
         print("O valor informado é inválido.")
-        return os.system('cls')
+        return os.system('clear')
     
     saldo += valor
     contas[conta_atual][2] = saldo
@@ -43,7 +43,7 @@ def depositar(valor, contas, conta_atual):
     contas[conta_atual][3] += f"Depósito: + R$ {valor:.2f}\n"
     writeContas(contas)
     input('Pressione qualquer tecla para continuar.')
-    os.system('cls')
+    os.system('clear')
     
 def visualizar_extrato(contas, conta_atual): # TODO: transformar extrato em uma só string contendo depósitos e saques
     saldo = contas[conta_atual][2]
@@ -52,7 +52,7 @@ def visualizar_extrato(contas, conta_atual): # TODO: transformar extrato em uma 
     print('Nenhuma movimentação foi registrada na sua conta.\n\n' if not extrato else extrato) 
     print(f"Seu saldo atual é de R${saldo:.2f}\n")
     input('Pressione qualquer tecla para continuar.')
-    os.system('cls')
+    os.system('clear')
 
 
 def cadastrar_usuario(usuarios):
@@ -61,11 +61,11 @@ def cadastrar_usuario(usuarios):
             if cpf in i.values(): #TODO: TypeError: argument of type 'builtin_function_or_method' is not iterable
                 print('Usuário já cadastrado. Tente novamente.')
                 input('Pressione qualquer tecla para continuar.')
-                return os.system('cls')
+                return os.system('clear')
     if isinstance(cpf, str):
         print('Tente novamente.')
         input('Pressione qualquer tecla para continuar.')
-        return os.system('cls')
+        return os.system('clear')
     usuario = input('Insira seu nome completo: ')
     data_nasc = input('Insira sua data de nascimento (XX-XX-XXXX): ')
     if not any(char.isalpha() for char in data_nasc):
@@ -73,13 +73,13 @@ def cadastrar_usuario(usuarios):
     else:
         print('Por favor, insira apenas números.')
         input("Pressione qualquer tecla para continuar.")
-        return os.system('cls')
+        return os.system('clear')
     if len(data_nasc) == 10:
         pass
     else:
         print('Data de nascimento inválida, tente novamente.')
         input("Pressione qualquer tecla para continuar.")
-        return os.system('cls')
+        return os.system('clear')
     endereço = input('Insira o seu endereço (logradouro, nro - bairro - cidade/sigla estado): ')
 
     usuarios.append({'nome':usuario, 'cpf':cpf, 'data_nasc':data_nasc, 'endereço':endereço})
@@ -87,7 +87,7 @@ def cadastrar_usuario(usuarios):
 
     print('Usuário registrado com sucesso!')
     input("Pressione qualquer tecla para continuar.")
-    os.system('cls')
+    os.system('clear')
 
 def pegar_cpf():
     try:
@@ -106,12 +106,12 @@ def criar_conta(usuarios, contas):
     if isinstance(cpf, str):
         print('Tente novamente.')
         input('Pressione qualquer tecla para continuar.')
-        return os.system('cls')
+        return os.system('clear')
     senha = int(input('Digite a senha da sua nova conta(somente números inteiros): '))
     if not usuarios:
         print('Não há usuários registrados no sistema. Tente novamente.')
         input('Pressione qualquer tecla para continuar.')
-        return os.system('cls')
+        return os.system('clear')
     for i in usuarios:
         if cpf in i.values():
             nome = i['nome']
@@ -119,7 +119,7 @@ def criar_conta(usuarios, contas):
         else:
             print('Este CPF não está registrado no sistema. Tente novamente.')
             input('Pressione qualquer tecla para continuar.')
-            return os.system('cls')
+            return os.system('clear')
     input(contas)
     if not contas.keys():
         num = 1
@@ -129,28 +129,28 @@ def criar_conta(usuarios, contas):
     writeContas(contas)
     print(f'Conta criada com sucesso! O número da sua conta é 0001-{num}')
     input("Pressione qualquer tecla para continuar.")
-    return os.system('cls')
+    return os.system('clear')
 
 def login(contas): #TODO: adicionar uma checagem do numero da agencia e do hifen
     conta = input('Informe sua conta utilizando o formato XXXX-X: ')
     if conta[:5] != '0001-':
         input('Número de conta e/ou senha inválido(s)! Pressione qualquer tecla para continuar.')
-        os.system('cls')
+        os.system('clear')
         return False
     conta = int(conta[5:])
     senha = int(input('Informe sua senha: '))
     if conta in contas.keys(): #TODO: criar um dic com as contas ={conta: [nome, senha, saldo, extrato]}
         if senha in contas[conta]:
             input('Login realizado com sucesso! Pressione qualquer tecla para continuar.')
-            os.system('cls')
+            os.system('clear')
             return conta
         else:
             input('Número de conta e/ou senha inválido(s)! Pressione qualquer tecla para continuar.')
-            os.system('cls')
+            os.system('clear')
             return False
     else:
         input('Número de conta e/ou senha inválido(s)! Pressione qualquer tecla para continuar.')
-        os.system('cls')
+        os.system('clear')
         return False
 
 def remover_conta(contas, conta_atual):
@@ -161,11 +161,11 @@ def remover_conta(contas, conta_atual):
         input(f'Conta {conta_atual} foi deletada com sucesso! Pressione qualquer tecla para continuar')
         conta_atual = 0
     elif confi.upper() == 'N':
-        return os.system('cls')
+        return os.system('clear')
     else:
         print("Por favor, utilize apenas S ou N para responder a pergunta. Tente novamente.")
         input('Pressione qualquer tecla para continuar')
-        return os.system('cls')
+        return os.system('clear')
 
 def remover_usuario(conta_atual, contas, usuarios): # TODO: adicionar mensagem de confirmação, lembrar de deletar todas as contas daquele usuário.
     pop = []
@@ -189,10 +189,10 @@ def remover_usuario(conta_atual, contas, usuarios): # TODO: adicionar mensagem d
         writeContas(contas), writeUsuarios(usuarios)
         input(f'Usuário {titular} foi deletado com sucesso! Pressione qualquer tecla para continuar. ')
         conta_atual = 0
-        return os.system('cls')
+        return os.system('clear')
         
     elif confi.upper() == 'N':
-        return os.system('cls')
+        return os.system('clear')
     else:
         input("Por favor, utilize apenas S ou N para responder a pergunta. Tente novamente.\nPressione qualquer tecla para continuar.")
-        return os.system('cls')
+        return os.system('clear')

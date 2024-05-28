@@ -71,11 +71,11 @@ while True:
     elif op == '3': # Extrato
         extrato()
     elif op.upper() == 'S': # Sair
-        os.system('cls')
+        os.system('clear')
         break
     else:
         print("Operação inválida! Tente novamente.")
 
 
     input("Pressione qualquer tecla para continuar.")
-    os.system('cls')
+    os.system('clear')
